@@ -11,4 +11,3 @@ resource "aws_nat_gateway" "natgw" {
     allocation_id = aws_eip.eip-nat.id
     subnet_id = aws_subnet.private[0].id
 }
-
