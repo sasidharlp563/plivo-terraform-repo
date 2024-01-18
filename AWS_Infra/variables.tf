@@ -4,6 +4,7 @@ variable "aws_region" {
 
 
 variable "aws_availability_zones" {}
+variable "env" {}
 
 variable "vpc_cidr" {}
 variable "publicsubnet0" {}

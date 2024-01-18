@@ -3,6 +3,8 @@ resource "aws_vpc" "vpc" {
   assign_generated_ipv6_cidr_block = false
   enable_dns_hostnames = true
   enable_dns_support = true
+  
+  tags = merge(var.tagging, tomap({"Name" = "${lookup(var.tagging,"env")}-vpc"}))
 }
 
 resource "aws_subnet" "public" {
@@ -11,6 +13,7 @@ resource "aws_subnet" "public" {
   cidr_block = lookup(var.IPSubnets, "publicsubnet${count.index}")
   map_public_ip_on_launch = false
   availability_zone = element(var.aws_availability_zones,count.index)
+  tags = merge(var.tagging, tomap({"Name" = "${lookup(var.tagging,"env")}-publicsubnet${count.index}"}))
 }
 
 resource "aws_subnet" "private" {
@@ -19,5 +22,5 @@ resource "aws_subnet" "private" {
   cidr_block = lookup(var.IPSubnets, "privatesubnet${count.index}")
   map_public_ip_on_launch = false
   availability_zone = element(var.aws_availability_zones,count.index)
-
+  tags = merge(var.tagging, tomap({"Name" = "${lookup(var.tagging,"env")}-privatesubnet${count.index}"}))
 }

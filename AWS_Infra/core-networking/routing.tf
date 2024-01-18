@@ -1,5 +1,6 @@
 resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.vpc.id
+  tags = merge(var.tagging, tomap({"Name" = "${lookup(var.tagging,"env")}-public_route_table"}))
 }
 
 resource "aws_route" "igw_routes" {
@@ -16,6 +17,7 @@ resource "aws_route_table_association" "public_table-rules" {
 
 resource "aws_route_table" "private_route_table" {
   vpc_id = aws_vpc.vpc.id
+  tags = merge(var.tagging, tomap({"Name" = "${lookup(var.tagging,"env")}-private_route_table"}))
 }
 
 resource "aws_route" "nat_routes" {
