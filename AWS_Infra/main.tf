@@ -5,17 +5,24 @@ locals {
     privatesubnet1 = var.privatesubnet1
     publicsubnet0  = var.publicsubnet0
   }
-  tags ={
-    env = var.env
+  tags = {
+    env         = var.env
     deployed_by = "Terraform"
   }
 }
 
-module "core-networking" {  
-  source = "./core-networking"
+module "core-networking" {
+  source = "./modules/core-networking"
 
-  vpc_cidr=var.vpc_cidr
-  IPSubnets=local.IPSubnets
-  aws_availability_zones=var.aws_availability_zones
-  tagging=local.tags
+  vpc_cidr               = var.vpc_cidr
+  IPSubnets              = local.IPSubnets
+  aws_availability_zones = var.aws_availability_zones
+  tagging                = local.tags
 }
+
+# module "eks" {
+#   source = "./modules/eks"
+#   subnet-ids = module.core-networking.aws_subnet_private_id
+#   tagging = local.tags
+#   eks-version=var.kubernetes-version
+# }

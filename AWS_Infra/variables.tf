@@ -10,3 +10,4 @@ variable "vpc_cidr" {}
 variable "publicsubnet0" {}
 variable "privatesubnet1" {}
 variable "privatesubnet0" {}
+variable "kubernetes-version" {}
