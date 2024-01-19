@@ -38,7 +38,15 @@ resource "aws_iam_role" "workernodes-role" {
     Principal = {
      Service = "ec2.amazonaws.com"
     }
-   }]
+   },
+  {
+    Action = "sts:AssumeRole"
+    Effect = "Allow"
+    Principal = {
+     Service = "eks.amazonaws.com"
+    }
+   }
+   ]
    Version = "2012-10-17"
   })
   tags = merge(var.tagging,tomap({"Name"="${lookup(var.tagging,"env")}-worker-role"}))

@@ -20,9 +20,9 @@ module "core-networking" {
   tagging                = local.tags
 }
 
-# module "eks" {
-#   source = "./modules/eks"
-#   subnet-ids = module.core-networking.aws_subnet_private_id
-#   tagging = local.tags
-#   eks-version=var.kubernetes-version
-# }
+module "eks" {
+  source      = "./modules/eks"
+  subnet-ids  = module.core-networking.aws_subnet_private_id
+  tagging     = local.tags
+  eks-version = var.kubernetes-version
+}

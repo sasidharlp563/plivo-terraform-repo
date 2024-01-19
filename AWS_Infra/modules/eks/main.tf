@@ -26,6 +26,10 @@ resource "aws_eks_node_group" "eks-node-group" {
         max_size   = 2
         min_size   = 1
     }
+    launch_template {
+      id      = aws_launch_template.node-template.id
+      version = aws_launch_template.node-template.latest_version
+    }
     depends_on = [
         aws_iam_role_policy_attachment.EC2InstanceProfileForImageBuilderECRContainerBuilds,
         aws_iam_role_policy_attachment.AmazonEC2ContainerRegistryReadOnly,

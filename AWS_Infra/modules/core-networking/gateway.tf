@@ -12,6 +12,6 @@ resource "aws_eip" "eip-nat" {
 #Nat gateway for public subnets
 resource "aws_nat_gateway" "natgw" {
     allocation_id = aws_eip.eip-nat.id
-    subnet_id = aws_subnet.private[0].id
+    subnet_id = aws_subnet.public[0].id
     tags = merge(var.tagging, tomap({"Name" = "${lookup(var.tagging,"env")}-nat-gw"}))
 }
