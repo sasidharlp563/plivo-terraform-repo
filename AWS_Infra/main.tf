@@ -12,6 +12,7 @@ locals {
   }
 }
 #add comment
+#demo commnet
 module "core-networking" {
   source = "./modules/core-networking"
 
