@@ -47,12 +47,11 @@ pipeline {
                     }//steps
                 }
             }//stages
-        // post {
-        //     always {
-        //         script {
-        //         sh 'echo "Cleaning up the workspace"'
-        //         sh 'rm -rf /home/ec2-user/workspace'
-        //        }
-        //     }
-        // }//post
+        post {
+            always {
+                script {
+                    sh  "rm -rf \$(pwd)/*"
+                }
+            }
+        }//post
     }//pipeline
