@@ -4,13 +4,14 @@ locals {
     privatesubnet0 = var.privatesubnet0
     privatesubnet1 = var.privatesubnet1
     publicsubnet0  = var.publicsubnet0
+    publicsubnet1  = var.publicsubnet1
   }
   tags = {
     env         = var.env
     deployed_by = "Terraform"
   }
 }
-
+#add comment
 module "core-networking" {
   source = "./modules/core-networking"
 

@@ -7,7 +7,7 @@ resource "aws_vpc" "vpc" {
 }
 
 resource "aws_subnet" "public" {
-  count=1
+  count=2
   vpc_id = aws_vpc.vpc.id
   cidr_block = lookup(var.IPSubnets, "publicsubnet${count.index}")
   map_public_ip_on_launch = true
